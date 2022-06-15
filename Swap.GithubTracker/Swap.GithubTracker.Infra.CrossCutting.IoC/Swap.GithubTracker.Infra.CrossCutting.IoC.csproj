@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.16.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Swap.GithubTracker.Application\Swap.GithubTracker.Application.csproj" />
+    <ProjectReference Include="..\Swap.GithubTracker.Domain\Swap.GithubTracker.Domain.csproj" />
+    <ProjectReference Include="..\Swap.GithubTracker.Infra.Data\Swap.GithubTracker.Infra.Data.csproj" />
+    <ProjectReference Include="..\Swap.GithubTracker.Infra.External\Swap.GithubTracker.Infra.External.csproj" />
+  </ItemGroup>
+
+</Project>
