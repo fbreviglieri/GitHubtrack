@@ -8,5 +8,6 @@ namespace Swap.GithubTracker.Domain.Interfaces.Repositories
     {
         Task<List<GithubTrack>> GetScheduledReadyToProcessAsync();
         Task<GithubTrack> InsertAsync(GithubTrack model);
+        Task<GithubTrack> UpdateAsync(GithubTrack model);
     }
 }

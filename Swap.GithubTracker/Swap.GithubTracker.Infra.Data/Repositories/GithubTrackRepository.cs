@@ -29,6 +29,17 @@ namespace Swap.GithubTracker.Infra.Data.Repositories
             return model;
         }
 
+        public async Task<GithubTrack> UpdateAsync(GithubTrack model)
+        {
+            var collection = _database.GetCollection<GithubTrack>(_nameCollection);
+            var filter = Builders<GithubTrack>.Filter.Eq(f => f.Id, model.Id);
+            var update = Builders<GithubTrack>.Update
+                .Set(u => u.Processed, model.Processed);
+
+            await collection.UpdateOneAsync(filter, update);
+            return model;
+        }
+
         public async Task<List<GithubTrack>> GetScheduledReadyToProcessAsync()
         {
             var collection = _database.GetCollection<GithubTrack>(_nameCollection);

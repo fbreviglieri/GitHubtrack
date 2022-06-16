@@ -37,19 +37,20 @@ namespace Swap.GithubTracker.Application.Services
             return result != null;
         }
 
-        public async Task<bool> ProcessScheduledTracksAsync()
+        public async Task ProcessScheduledTracksAsync()
         {
             var trackList = await _githubTrackRepository.GetScheduledReadyToProcessAsync();
             if (trackList != null)
             {
                 foreach (var track in trackList)
                 {
-                    //enviar para webhook
-                    await _webHookService.PostGithubTrack(track);
-                    //atualizar mongo para processado
+                    if (await _webHookService.PostGithubTrack(track))
+                    {
+                        track.ChangeProcessed();
+                        await _githubTrackRepository.UpdateAsync(track);
+                    }
                 }
-            }
-            return true;
+            }            
         }
     }
 }

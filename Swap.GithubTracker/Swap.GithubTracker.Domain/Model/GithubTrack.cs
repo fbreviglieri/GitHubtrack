@@ -23,5 +23,11 @@ namespace Swap.GithubTracker.Domain.Model
         public DateTime CreatedAt { get; private set; }
         public bool Processed { get; private set; }
 
+        public void ChangeProcessed()
+        {
+            Processed = !Processed;
+        }
+
+
     }
 }

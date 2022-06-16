@@ -21,9 +21,8 @@ namespace Swap.GithubTracker.Infra.External.Services
             var request = GithubTrackPostRequestMapper.Map(model);                     
             var requestData = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");           
             var response = await _httpClient.PostAsync("", requestData);
-            var result = await response.Content.ReadAsStringAsync();
-            //var catalog = JsonConvert.DeserializeObject<Catalog>(responseString);
-            return false;
+
+            return response.IsSuccessStatusCode;
         }
     }
 }
