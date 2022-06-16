@@ -7,7 +7,7 @@ Serviço que recupera todas as issues de um determinado repositório no github e
   nome_repositorio  string
   
 
-# Response
+# Objeto webhook
 
 { user: nome_usuario
   repository: nome_repositorio
