@@ -3,7 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Swap.GithubTracker.Domain.Configurations;
+using Swap.GithubTracker.Domain.Interfaces.Services;
 using Swap.GithubTracker.Infra.CrossCutting.IoC;
+using Swap.GithubTracker.Infra.External.Services;
+using System;
 
 namespace Swap.GithubTracker
 {
@@ -18,7 +22,7 @@ namespace Swap.GithubTracker
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {            
             services.AddControllers();
             services.AddSwaggerGen(opt =>
             {

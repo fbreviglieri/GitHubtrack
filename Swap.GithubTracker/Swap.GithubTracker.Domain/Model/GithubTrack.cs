@@ -21,7 +21,7 @@ namespace Swap.GithubTracker.Domain.Model
         public List<Contributor> Contributors { get; private set; }
         public List<Issue> Issues { get; private set; }
         public DateTime CreatedAt { get; private set; }
-
+        public bool Processed { get; private set; }
 
     }
 }

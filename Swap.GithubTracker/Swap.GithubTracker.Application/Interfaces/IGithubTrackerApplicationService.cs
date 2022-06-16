@@ -6,5 +6,6 @@ namespace Swap.GithubTracker.Application.Interfaces
     public interface IGithubTrackerApplicationService
     {
         Task<bool> AddGithubTrackAsync(RequestGithubTrackViewModel request);
+        Task<bool> ProcessScheduledTracksAsync();
     }
 }

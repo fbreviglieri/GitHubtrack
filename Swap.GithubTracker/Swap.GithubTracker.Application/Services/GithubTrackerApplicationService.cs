@@ -13,19 +13,21 @@ namespace Swap.GithubTracker.Application.Services
         private readonly ILogger<GithubTrackerApplicationService> _logger;
         private readonly IGithubTrackRepository _githubTrackRepository;
         private readonly IGithubService _githubService;
+        private readonly IWebHookService _webHookService;
 
-        public GithubTrackerApplicationService(ILogger<GithubTrackerApplicationService> logger, IGithubTrackRepository githubTrackRepository, IGithubService githubService)
+        public GithubTrackerApplicationService(ILogger<GithubTrackerApplicationService> logger, IGithubTrackRepository githubTrackRepository, IGithubService githubService, IWebHookService webHookService)
         {
             _logger = logger;
             _githubTrackRepository = githubTrackRepository;
             _githubService = githubService;
+            _webHookService = webHookService;
         }
 
         public async Task<bool> AddGithubTrackAsync(RequestGithubTrackViewModel request)
         {
-            var issues = await _githubService.GetIssues(request.NomeUsuario, request.NomeRepositorio);
-            var contributors = await _githubService.GetContributors(request.NomeUsuario, request.NomeRepositorio);
-            var githubTrack = new GithubTrack(request.NomeUsuario, request.NomeRepositorio, issues.Items, contributors);
+            var issues = await _githubService.GetIssues(request.UserName, request.RepositoryName);
+            var contributors = await _githubService.GetContributors(request.UserName, request.RepositoryName);
+            var githubTrack = new GithubTrack(request.UserName, request.RepositoryName, issues.Items, contributors);
             foreach (var contributor in githubTrack.Contributors)
             {
                 contributor.SetName(await _githubService.GetUserName(contributor.User));
@@ -33,6 +35,21 @@ namespace Swap.GithubTracker.Application.Services
             var result = await _githubTrackRepository.InsertAsync(githubTrack);
 
             return result != null;
+        }
+
+        public async Task<bool> ProcessScheduledTracksAsync()
+        {
+            var trackList = await _githubTrackRepository.GetScheduledReadyToProcessAsync();
+            if (trackList != null)
+            {
+                foreach (var track in trackList)
+                {
+                    //enviar para webhook
+                    await _webHookService.PostGithubTrack(track);
+                    //atualizar mongo para processado
+                }
+            }
+            return true;
         }
     }
 }

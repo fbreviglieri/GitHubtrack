@@ -9,6 +9,7 @@ using Swap.GithubTracker.Domain.Interfaces.Services;
 using Swap.GithubTracker.Infra.Data.Mapping;
 using Swap.GithubTracker.Infra.Data.Repositories;
 using Swap.GithubTracker.Infra.External.Services;
+using System;
 
 namespace Swap.GithubTracker.Infra.CrossCutting.IoC
 {
@@ -16,9 +17,9 @@ namespace Swap.GithubTracker.Infra.CrossCutting.IoC
     {
         public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
         {
-            //IOptions Configurations
+              //IOptions Configurations
             services.Configure<DbGithubTrackerSettings>(configuration.GetSection("DbGithubTrackerSettings"));
-
+            
             //Application Services
             services.AddTransient<IGithubTrackerApplicationService, GithubTrackerApplicationService>();
 
@@ -27,6 +28,10 @@ namespace Swap.GithubTracker.Infra.CrossCutting.IoC
             services.AddTransient<IGithubService, GithubService>();
 
             //Infra
+            services.AddHttpClient<IWebHookService, WebHookService>(client =>
+            {
+                client.BaseAddress = new Uri(configuration.GetSection("DbGithubTrackerSettings").Get<DbGithubTrackerSettings>().WebHookUrl);
+            });
 
             //Mongo Database
             services.AddSingleton<IMongoClient>(c =>

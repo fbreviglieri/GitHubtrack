@@ -2,7 +2,7 @@
 {
     public class RequestGithubTrackViewModel
     {        
-        public string NomeUsuario { get; set; }        
-        public string NomeRepositorio { get; set; }
+        public string UserName { get; set; }        
+        public string RepositoryName { get; set; }
     }
 }

@@ -3,7 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Services", "1. Services", "{687A7A6F-2A4B-44FD-B42F-438EC495D1C5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Application", "{4BCD2B2F-1733-411D-8F6B-593CC2D3925B}"
@@ -20,19 +19,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 CrossCutting", "4.3 Cro
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Tests", "5. Tests", "{84C76611-4823-4DB8-BCEB-4D47D25515A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swap.GithubTracker.Services.Api", "Swap.GithubTracker\Swap.GithubTracker.Services.Api.csproj", "{CC5E9876-786F-4051-AC92-0953A497A8D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swap.GithubTracker.Services.Api", "Swap.GithubTracker\Swap.GithubTracker.Services.Api.csproj", "{CC5E9876-786F-4051-AC92-0953A497A8D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swap.GithubTracker.Application", "Swap.GithubTracker.Application\Swap.GithubTracker.Application.csproj", "{86DA8FC7-E81E-48F1-958E-63F37C1A7500}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swap.GithubTracker.Application", "Swap.GithubTracker.Application\Swap.GithubTracker.Application.csproj", "{86DA8FC7-E81E-48F1-958E-63F37C1A7500}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swap.GithubTracker.Domain", "Swap.GithubTracker.Domain\Swap.GithubTracker.Domain.csproj", "{2301A399-B364-4E65-82CF-D83BC9877FA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swap.GithubTracker.Domain", "Swap.GithubTracker.Domain\Swap.GithubTracker.Domain.csproj", "{2301A399-B364-4E65-82CF-D83BC9877FA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swap.GithubTracker.Infra.Data", "Swap.GithubTracker.Infra.Data\Swap.GithubTracker.Infra.Data.csproj", "{9277C057-2EC5-4202-9721-CDFB850A6A7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swap.GithubTracker.Infra.Data", "Swap.GithubTracker.Infra.Data\Swap.GithubTracker.Infra.Data.csproj", "{9277C057-2EC5-4202-9721-CDFB850A6A7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swap.GithubTracker.Infra.External", "Swap.GithubTracker.Infra.External\Swap.GithubTracker.Infra.External.csproj", "{652DC161-506A-437E-AB55-051122B3CF72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swap.GithubTracker.Infra.External", "Swap.GithubTracker.Infra.External\Swap.GithubTracker.Infra.External.csproj", "{652DC161-506A-437E-AB55-051122B3CF72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swap.GithubTracker.Infra.CrossCutting.IoC", "Swap.GithubTracker.Infra.CrossCutting.IoC\Swap.GithubTracker.Infra.CrossCutting.IoC.csproj", "{ED0CA6CB-AFD3-41E2-B525-17CDB471BAD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swap.GithubTracker.Infra.CrossCutting.IoC", "Swap.GithubTracker.Infra.CrossCutting.IoC\Swap.GithubTracker.Infra.CrossCutting.IoC.csproj", "{ED0CA6CB-AFD3-41E2-B525-17CDB471BAD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swap.GithubTracker.Tests", "Swap.GithubTracker.Tests\Swap.GithubTracker.Tests.csproj", "{C45992CB-BD1A-4709-87CD-E638741B6E29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swap.GithubTracker.Tests", "Swap.GithubTracker.Tests\Swap.GithubTracker.Tests.csproj", "{C45992CB-BD1A-4709-87CD-E638741B6E29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swap.GithubTracker.Services.Worker", "Swap.GithubTracker.Services.Worker\Swap.GithubTracker.Services.Worker.csproj", "{896EA3C8-DADC-402D-BDE6-526B4CD976A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,21 +69,26 @@ Global
 		{C45992CB-BD1A-4709-87CD-E638741B6E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C45992CB-BD1A-4709-87CD-E638741B6E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C45992CB-BD1A-4709-87CD-E638741B6E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{896EA3C8-DADC-402D-BDE6-526B4CD976A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{896EA3C8-DADC-402D-BDE6-526B4CD976A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{896EA3C8-DADC-402D-BDE6-526B4CD976A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{896EA3C8-DADC-402D-BDE6-526B4CD976A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{CC5E9876-786F-4051-AC92-0953A497A8D1} = {687A7A6F-2A4B-44FD-B42F-438EC495D1C5}
 		{966F91CC-58E3-47E4-AD20-F7A81C26D0F6} = {78FB28BA-5468-486F-A779-A5ACE0E5C0D9}
 		{9ADC851E-B913-410D-95B1-0263B1A3374B} = {78FB28BA-5468-486F-A779-A5ACE0E5C0D9}
 		{AE2DC62D-F0AA-4C59-B277-D7EF8FB3CF1B} = {78FB28BA-5468-486F-A779-A5ACE0E5C0D9}
+		{CC5E9876-786F-4051-AC92-0953A497A8D1} = {687A7A6F-2A4B-44FD-B42F-438EC495D1C5}
 		{86DA8FC7-E81E-48F1-958E-63F37C1A7500} = {4BCD2B2F-1733-411D-8F6B-593CC2D3925B}
 		{2301A399-B364-4E65-82CF-D83BC9877FA7} = {157EAC95-846E-4975-8206-1527936905FB}
 		{9277C057-2EC5-4202-9721-CDFB850A6A7C} = {966F91CC-58E3-47E4-AD20-F7A81C26D0F6}
 		{652DC161-506A-437E-AB55-051122B3CF72} = {9ADC851E-B913-410D-95B1-0263B1A3374B}
 		{ED0CA6CB-AFD3-41E2-B525-17CDB471BAD8} = {AE2DC62D-F0AA-4C59-B277-D7EF8FB3CF1B}
 		{C45992CB-BD1A-4709-87CD-E638741B6E29} = {84C76611-4823-4DB8-BCEB-4D47D25515A9}
+		{896EA3C8-DADC-402D-BDE6-526B4CD976A8} = {687A7A6F-2A4B-44FD-B42F-438EC495D1C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7210545D-D78B-4919-BA9B-FD013DD73546}

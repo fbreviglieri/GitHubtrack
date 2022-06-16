@@ -1,8 +1,11 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using Swap.GithubTracker.Domain.Configurations;
 using Swap.GithubTracker.Domain.Interfaces.Repositories;
 using Swap.GithubTracker.Domain.Model;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Swap.GithubTracker.Infra.Data.Repositories
@@ -11,10 +14,12 @@ namespace Swap.GithubTracker.Infra.Data.Repositories
     {
         private const string _nameCollection = "gitHubTrack";
         private readonly IMongoDatabase _database;
+        private readonly int _diffHours;
 
         public GithubTrackRepository(IMongoClient client, IOptions<DbGithubTrackerSettings> settings)
         {
             _database = client.GetDatabase(settings.Value.NomeDataBase);
+            _diffHours = settings.Value.DiffIntervalHours;
         }
 
         public async Task<GithubTrack> InsertAsync(GithubTrack model)
@@ -22,6 +27,15 @@ namespace Swap.GithubTracker.Infra.Data.Repositories
             var collection = _database.GetCollection<GithubTrack>(_nameCollection);
             await collection.InsertOneAsync(model);
             return model;
+        }
+
+        public async Task<List<GithubTrack>> GetScheduledReadyToProcessAsync()
+        {
+            var collection = _database.GetCollection<GithubTrack>(_nameCollection);
+            return await collection.AsQueryable()
+                .Where(x => !x.Processed && (x.CreatedAt < DateTime.UtcNow.Subtract(TimeSpan.FromHours(_diffHours))))
+                .OrderBy(x => x.CreatedAt)
+                .ToListAsync();
         }
     }
 }
