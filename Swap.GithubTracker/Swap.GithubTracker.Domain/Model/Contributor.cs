@@ -2,6 +2,9 @@
 {
     public class Contributor
     {
+        public Contributor()
+        {
+        }
         public Contributor(string user, int commitsQty)
         {
             this.User = user;

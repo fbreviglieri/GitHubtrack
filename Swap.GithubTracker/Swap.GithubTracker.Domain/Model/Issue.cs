@@ -4,6 +4,9 @@ namespace Swap.GithubTracker.Domain.Model
 {
     public class Issue
     {
+        public Issue()
+        {
+        }
         public Issue(string title, string author, List<string> labels)
         {
             this.Author = author;

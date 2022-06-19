@@ -6,12 +6,15 @@ namespace Swap.GithubTracker.Domain.Model
 {
     public class GithubTrack
     {
+        public GithubTrack()
+        {
+        }
         public GithubTrack(string user, string repository, IReadOnlyList<Octokit.Issue> issues, IReadOnlyList<Octokit.RepositoryContributor> contributors)
         {
             this.UserName = user;
             this.RepositoryName = repository;
-            this.Contributors = contributors.Select(x => new Contributor( x.Login, x.Contributions)).ToList();
-            this.Issues = issues.Select(x => new Issue(x.Title, x.User.Login, x.Labels.Select(y => y.Name).ToList())).ToList();
+            this.Contributors = contributors?.Select(x => new Contributor( x.Login, x.Contributions)).ToList();
+            this.Issues = issues?.Select(x => new Issue(x.Title, x.User.Login, x.Labels.Select(y => y.Name).ToList())).ToList();
             this.CreatedAt = DateTime.UtcNow;
         }
 

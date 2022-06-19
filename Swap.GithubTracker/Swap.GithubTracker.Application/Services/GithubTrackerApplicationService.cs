@@ -4,6 +4,7 @@ using Swap.GithubTracker.Application.ViewModels;
 using Swap.GithubTracker.Domain.Interfaces.Repositories;
 using Swap.GithubTracker.Domain.Interfaces.Services;
 using Swap.GithubTracker.Domain.Model;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Swap.GithubTracker.Application.Services
@@ -27,13 +28,17 @@ namespace Swap.GithubTracker.Application.Services
         {
             var issues = await _githubService.GetIssues(request.UserName, request.RepositoryName);
             var contributors = await _githubService.GetContributors(request.UserName, request.RepositoryName);
-            var githubTrack = new GithubTrack(request.UserName, request.RepositoryName, issues.Items, contributors);
-            foreach (var contributor in githubTrack.Contributors)
-            {
-                contributor.SetName(await _githubService.GetUserName(contributor.User));
-            }
-            var result = await _githubTrackRepository.InsertAsync(githubTrack);
+            var githubTrack = new GithubTrack(request.UserName, request.RepositoryName, issues?.Items, contributors);
 
+            if (githubTrack.Contributors != null)
+            {
+                foreach (var contributor in githubTrack.Contributors)
+                {
+                    contributor.SetName(await _githubService.GetUserName(contributor.User));
+                }
+            }
+
+            var result = await _githubTrackRepository.InsertAsync(githubTrack);
             return result != null;
         }
 
