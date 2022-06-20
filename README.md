@@ -24,7 +24,7 @@ Serviço que recupera todas as issues de um determinado repositório no github e
 
  }
 
-#Inicializar a Aplicação
+# Inicializar a Aplicação
 
  - IDE para .netcore 3.1
  - Restore nuget packages
