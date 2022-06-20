@@ -1,8 +1,12 @@
-﻿namespace Swap.GithubTracker.Application.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Swap.GithubTracker.Application.ViewModels
 {
     public class RequestGithubTrackViewModel
     {        
-        public string UserName { get; set; }        
+        [Required]
+        public string UserName { get; set; }
+        [Required]
         public string RepositoryName { get; set; }
     }
 }

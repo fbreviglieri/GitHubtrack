@@ -40,6 +40,10 @@ namespace Swap.GithubTracker.Infra.Data.Repositories
             return model;
         }
 
+        /// <summary>
+        ///   Get All GithubTrack with flag Processed: False and created 24+ hours ago
+        /// </summary>
+        /// <returns>GithubTrack list to be processed</returns>
         public async Task<List<GithubTrack>> GetScheduledReadyToProcessAsync()
         {
             var collection = _database.GetCollection<GithubTrack>(_nameCollection);

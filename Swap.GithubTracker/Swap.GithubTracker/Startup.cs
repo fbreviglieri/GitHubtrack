@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Swap.GithubTracker.Domain.Configurations;
 using Swap.GithubTracker.Domain.Interfaces.Services;
 using Swap.GithubTracker.Infra.CrossCutting.IoC;
 using Swap.GithubTracker.Infra.External.Services;
+using Swap.GithubTracker.Services.Api.ActionFilters;
+using Swap.GithubTracker.Services.Api.Extensions;
 using System;
 
 namespace Swap.GithubTracker
@@ -24,6 +27,10 @@ namespace Swap.GithubTracker
         public void ConfigureServices(IServiceCollection services)
         {            
             services.AddControllers();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(ValidateModelStateAttribute));
+            });
             services.AddSwaggerGen(opt =>
             {
                 opt.SwaggerDoc("v1",
@@ -39,8 +46,10 @@ namespace Swap.GithubTracker
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory logger)
         {
+            app.UseErrorHandler(logger);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
