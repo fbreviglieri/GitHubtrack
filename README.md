@@ -8,7 +8,7 @@ Serviço que recupera todas as issues de um determinado repositório no github e
   
 
 # Objeto webhook
-
+```
 { user: nome_usuario
   repository: nome_repositorio
   issues: [
@@ -23,7 +23,7 @@ Serviço que recupera todas as issues de um determinado repositório no github e
   ]
 
  }
-
+```
 # Inicializar a Aplicação
 
  - IDE para .netcore 3.1
@@ -32,10 +32,10 @@ Serviço que recupera todas as issues de um determinado repositório no github e
     - Será necessário setar a connectionstring e databasename  no appsettings dos projetos 
       - Swap.GithubTracker.Services.Api
       - Swap.GithubTracker.Services.Worker
-          - MongoConnectionString: connectionstring mongo
-          - NomeDataBase: databasename criado
-          - WebhookUrl: Url para qual a resposta deve ser enviada passadas X horas
-          - DiffIntervalHours: X horas de diferença para envio da resposta
+          - __MongoConnectionString__: connectionstring mongo
+          - __NomeDataBase__: databasename criado
+          - __WebhookUrl__: Url para qual a resposta deve ser enviada passadas X horas
+          - __DiffIntervalHours__: X horas de diferença para envio da resposta
 - Para o Worker Swap.GithubTracker.Services.Worker temos uma configuração adicional no  appsettings
-  - Active: Ativa ou desativa o worker
-  - IntervalMinutes: Periodicidade na qual o worker verifica se há algum dado para ser enviado ao Webhook
+  - __Active__: Ativa ou desativa o worker
+  - __IntervalMinutes__: Periodicidade na qual o worker verifica se há algum dado para ser enviado ao Webhook
