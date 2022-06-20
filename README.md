@@ -37,5 +37,5 @@ Serviço que recupera todas as issues de um determinado repositório no github e
           - WebhookUrl: Url para qual a resposta deve ser enviada passadas X horas
           - DiffIntervalHours: X horas de diferença para envio da resposta
 - Para o Worker Swap.GithubTracker.Services.Worker temos uma configuração adicional no  appsettings
-          - Active: Ativa ou desativa o worker
-          - IntervalMinutes: Periodicidade na qual o worker verifica se há algum dado para ser enviado ao Webhook
+  - Active: Ativa ou desativa o worker
+  - IntervalMinutes: Periodicidade na qual o worker verifica se há algum dado para ser enviado ao Webhook
