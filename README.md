@@ -5,8 +5,8 @@ Serviço que recupera todas as issues de um determinado repositório no github e
 # Request
 ```
 {
-  "userName":      "string",
-  "repositoryName":  "string"
+  "userName": "string",
+  "repositoryName": "string"
 }
 ```
 
